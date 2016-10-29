@@ -1,0 +1,15 @@
+preprocessing/*.txt
+preprocessing/*.rda
+data/*.rda
+data/*.xlsx
+*.o
+*.so
+mf/*.txt
+mf/*.txt*
+mf/*.model
+evaluation/*.txt
+evaluation/*.txt*
+evaluation/*.pyc
+xgboost/*.txt
+xgboost/*.txt*
+xgboost/*.rda

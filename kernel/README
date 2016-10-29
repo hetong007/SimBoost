@@ -1,0 +1,109 @@
+OVERVIEW
+
+This package contains code implementing the experimental setup described
+in the article
+
+Toward more realistic drug-target interaction predictions.
+Pahikkala T, Airola A, Pietilä S, Shakyawar S, Szwajda A, Tang J, Aittokallio T.
+Brief Bioinform. 2015 Mar;16(2):325-37. doi: 10.1093/bib/bbu010
+
+The Kronecker RLS algorithm is from the RLScore software library at
+https://github.com/aatapa/RLScore
+
+The algorithm is described in the article:
+
+Efficient regularized least-squares algorithms for conditional ranking on relational data
+T Pahikkala, A Airola, M Stock, B De Baets, W Waegeman
+Machine learning 2013 93 (2-3), 321-356
+
+Please cite the aforementioned works, if using this software in your own research.
+
+The software implements nested cross-validation in the settings S1-S4. In settings
+S1-S3 an outer five-fold, and inner four-fold cross-validation is used, while in S4
+an outer 3x3 and an inner 2x2 cross-validation are used. The code supports both binary
+(-1, +1) and real-valued labels, and you can supply your own data and performance measure.
+
+Examples using both real-valued and binary output versions of the Davis and Metz data,
+with both the concordance index (equivalent to area under ROC curve for binary labels)
+and area under precision-recall curve (AUPR) are provided. You can modify the code by
+defining your own data files, and if needed, your own performance measure.
+
+The code is research code provided as is, bug reports are welcome. Due to differences
+caused by factors such as randomization of the folds, slight changes in how the missing
+data is imputated etc. the code will not exactly produce the same results as in the paper:
+"Toward more realistic drug-target interaction predictions", but the results
+should still fairly closely follow the reported results.
+
+INSTALLATION
+
+Requirements:
+Python 2.7x (may work with earlier versions, not tested)
+NumPy 
+C-compiler
+
+run "python setup.py"
+
+Installation has been tested to work on recent Ubuntu Linux distributions, for
+installation on Windows you may need to check how to set up a C-compiler
+(e.g. Visual C++, MinGW) together with the Python distutils tools.
+
+Additionally, if using the AUPR-performance measure, you need to download the
+auc.jar package to the same folder as the rest of the code from
+
+http://mark.goadrich.com/programs/AUC/
+
+and have a working Java runtime environment installed. The python wrapper implemented
+in the function get_aupr(Y, P) will call this implementation. The code is not safe
+for running multiple instances of it at the same time, as these will overwrite the
+temp-files created by other run.
+
+RUNNING THE EXPERIMENTS
+
+Example codes for running Davis and Metz data, both for binarized and original real-valued
+outputs, as well as both cindex and AUPR are provided in the python script. Uncomment the
+experiment you want to run in the main-function of the script and run it with:
+
+python kronecker_experiments.py
+
+USING YOUR OWN DATA
+
+use the davis and metz functions as examples how to run experiments on your own data.
+
+Experiments are run by executing:
+
+experiment(XD, XT, Y, perfmeasure, foldcount=5)
+
+Input:
+XD: drugs x drug_features numpy array
+XT: targets x target_features numpy array
+
+The features can be any real values describing the drugs/targets, also similarities with
+other durgs or targets. 
+
+Y
+drugs x targets numpy array of drug-target interactions
+
+Either real-values describing the strength of the interaction, or binary {-1, +1} = {INTERACTS / NOT}.
+nan (=not a number)-values can be used if for some pairs this is unkown, nan-values are ignored
+both in training and testing (see Metz-data for example of data with many nan-values).
+
+perfmeasure:
+either cindex or get_aupr
+
+Note that cindex works for both binary and real-valued outputs, while AUPR works only for binary classification.
+
+If instead of the supplied cindex and AUPR measures you want to use your own performance measure function,
+simply write a function like
+
+def my_function(list_of_true_outputs, list_of_predicted_outputs):
+    value = number describing how well true_outputs match predicted_outputs (the bigger the better)
+    return value
+
+and pass it as argument.
+
+folds:
+Default 5-fold for settings 1-3, but you can use a different number of folds too. The code will
+execute outer (performance measurement) n-fold and inner n-1 fold (selection of regularization
+parameter) cross-validation.
+
+
