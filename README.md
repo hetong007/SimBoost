@@ -16,17 +16,13 @@ The folder for the matrix factorization method
 
 ## kernel
 
-The folder for the kernel method. This folder contains the code for the comparison model KronRLS.
+The folder for the kernel method. This folder contains the code for the comparison model KronRLS. 
 
 ## xgboost
 
-The folder for the xgboost method. This folder contains the code for the SimBoost and SimBoostQuant methods.
-
-## crf 
-
-The folder for the crf method
+The folder for the xgboost method. This folder contains the code for the SimBoost and SimBoostQuant methods. See the README file in this folder for further instructions on how to use the method. 
 
 ## evaluation
 
-The folder for the evaluation code pieces which generate results in the folder data/
+The folder for the evaluation code. See the README file in this folder for further instructions.
 
