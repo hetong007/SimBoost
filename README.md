@@ -1,6 +1,6 @@
-# ThesisCode
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.163787.svg)](https://doi.org/10.5281/zenodo.163787)
 
-The folder for the thesis project.
+# SimBoost
 
 ## data
 
@@ -21,10 +21,6 @@ The folder for the kernel method
 ## xgboost
 
 The folder for the xgboost method
-
-## crf 
-
-The folder for the crf method
 
 ## evaluation
 
