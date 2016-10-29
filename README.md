@@ -22,10 +22,6 @@ The folder for the kernel method
 
 The folder for the xgboost method
 
-## crf 
-
-The folder for the crf method
-
 ## evaluation
 
 The folder for the evaluation code pieces which generate results in the folder data/
