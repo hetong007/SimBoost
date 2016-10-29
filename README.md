@@ -1,6 +1,4 @@
-# ThesisCode
-
-The folder for the thesis project.
+# SimBoost
 
 ## data
 
