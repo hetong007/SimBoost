@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.163787.svg)](https://doi.org/10.5281/zenodo.163787)
+
 # SimBoost
 
 ## data
