@@ -1,4 +1,4 @@
 ## data
 
-The folder for original data
+The folder for preprocessed data
 
